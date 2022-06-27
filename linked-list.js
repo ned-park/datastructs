@@ -1,24 +1,24 @@
 class Node {
 	constructor(data=null, ptr=null) {
 		this.data = data //this stores the number
-		this.ptr = ptr // points to next node
+		this.ptr = ptr // points to ptr node
 	}
 }
 
 class LinkedList {
-	constructor(head, next=null) {
-		this.head = new Node(head) // this is a node
-		this.next = next // this points to the next node
+	constructor(head, ptr=null) {
+		this.head = new Node(head, ptr) // this is a node
+		this.ptr = this.head.ptr // this points to the ptr node
 		this.tail = this.head
 	}
 
 	push(data) {
 		let curr = this.head
-		while (curr.next != null) {
-			curr = curr.next		
+		while (curr.ptr != null) {
+			curr = curr.ptr		
 		}
-		curr.next = new Node(data, null)
-		this.tail = curr.next
+		curr.ptr = new Node(data, null)
+		this.tail = curr.ptr
 	}
 	
 	toString() {
@@ -26,26 +26,26 @@ class LinkedList {
 		let curr = this.head
 		while (curr != null) {
 			out += `${curr.data} -> `
-			curr = curr.next
+			curr = curr.ptr
 		}
 		return out + 'null'
 	}
 
 	shift() {
 		let node = this.head
-		this.head = this.head.next
-		node.next = null
+		this.head = this.head.ptr
+		node.ptr = null
 		return node
 	}
 
 	pop() {
 		let curr = this.head
-		while (curr.next != this.tail) {
-			curr = curr.next
+		while (curr.ptr != this.tail) {
+			curr = curr.ptr
 		}
 		let node = this.tail
 		this.tail = curr
-		this.tail.next = null
+		this.tail.ptr = null
 		return node
 	}
 
@@ -54,7 +54,7 @@ class LinkedList {
 		let curr = this.head
 		while (curr != null) {
 			++count
-			curr = curr.next
+			curr = curr.ptr
 		}
 		return count
 	}
@@ -65,7 +65,7 @@ class LinkedList {
 			if (curr.data == n) {
 				return node
 			}
-			curr = curr.next
+			curr = curr.ptr
 		}
 		return false
 	}
@@ -75,21 +75,21 @@ class LinkedList {
 			this.head = new Node(data, this.head)
 			return this.head
 		} else if (pos == this.length()) {
-			this.tail.next = new Node(data)
-			this.tail = this.tail.next
+			this.tail.ptr = new Node(data)
+			this.tail = this.tail.ptr
 			this.tail
 		} else {
 			let count = 1
 			let curr = this.head
 			while (count < pos) {
 				++count
-				curr = curr.next
+				curr = curr.ptr
 			}
-			let next = curr.next
-			console.log(next)
+			let ptr = curr.ptr
+			console.log(ptr)
 			let node = new Node(data)
-			node.next = curr.next
-			curr.next = node
+			node.ptr = curr.ptr
+			curr.ptr = node
 			return node
 		}
 	}
@@ -106,13 +106,8 @@ console.log(ll.toString())
 
 
 
-class Queue() {
-	constructor() {
-		let q = new LinkedList()
-	}
 
 	
-}
 
 
 
