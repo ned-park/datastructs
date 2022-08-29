@@ -1,4 +1,6 @@
-# Code built during a lecture on building a singly linked list given to new Full-Stack developers
+# Linked list lecture code
+
+Code built during a lecture on building a singly linked list given to new Full-Stack developers.
 
 ## Technology
 Vanilla JavaScript (node for running)
